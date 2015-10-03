@@ -17,8 +17,7 @@ object HelloWorld extends App {
 
   import sys.dispatcher
 
-  // Element types
-
+  // Define a pipeline from Source to Sink
   val pipeline : Future[String] = Source("Hello world".toList)
   .map(c => c.toUpper)
   .concat(Source("!!!"))
@@ -28,7 +27,7 @@ object HelloWorld extends App {
     }
   })
 
-
+  // On completion
   pipeline.onComplete{
     case Success(text) =>
       println(text)
@@ -37,10 +36,5 @@ object HelloWorld extends App {
     case Failure(text) =>
       sys.shutdown()
   }
-
-
-
-
-
 
 }

@@ -11,14 +11,11 @@ import scala.concurrent.duration._
  */
 object MergePerson extends App{
 
-
   implicit val sys = ActorSystem()
   implicit val mat = FlowMaterializer()
 
-  import sys.dispatcher
-
+  // Model
   final case class Person(name: String, age: Int)
-
 
   val graph = FlowGraph { implicit b =>
     import FlowGraphImplicits._
@@ -41,5 +38,4 @@ object MergePerson extends App{
   System.in.read()
   sys.shutdown()
   sys.awaitTermination(1 second)
-
 }
